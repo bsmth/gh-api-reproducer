@@ -8,6 +8,10 @@ Fetching commits via gh api
 
   - : Flag emoji
 
+- &#65533;
+
+  - : Unicode replacement character HTML entity
+
 - �
 
   - : Unicode replacement character
