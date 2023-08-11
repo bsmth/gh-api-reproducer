@@ -4,7 +4,12 @@ Fetching commits via gh api
 
 ## Test chars
 
+- 🇮🇪
+
+  - : Flag emoji
+
 - �
+
   - : Unicode replacement character
 
 ## Steps to reproduce
@@ -12,16 +17,21 @@ Fetching commits via gh api
 Use the `gh` cli to fetch commits from this repo:
 
 ```bash
-gh api repos/bsmth/gh-api-reproducer/commits/{commit-sha} > output.json
-tail output.json
+gh api repos/bsmth/gh-api-reproducer/commits/81d0f58fbadb176ccfd292240b87e474f4b5c848
+# invalid UTF-8 string
 ```
 
 ## Expected result
 
+A full JSON response is returned:
+
 ```json
 {
   // ...
-  "patch": "@@ -1,3 +1,5 @@\n []: # Path: README.md\n # gh-api-reproducer\n \n+Fetching commits via gh api\n+\n ## Test chars\n \n - TODO\n \n"
+  "files": [
+    {
+      // ...
+      "patch": "@@ -1,3 +1,5 @@\n []: # Path: README.md\n # gh-api-reproducer\n \n+Fetching commits via gh api\n+\n ## Test chars\n \n - �\n  - : Unicode replacement character\n ..."
   // ...
 }
 ```
